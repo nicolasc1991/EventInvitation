@@ -1,25 +1,28 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import EventForm from './components/EventForm';
+import EventList from './components/EventList';
+import { Container, CssBaseline, Box } from '@mui/material';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+const App = () => {
+    const [events, setEvents] = useState([]);
+
+    const handleEventCreated = (event) => {
+        setEvents([...events, event]);
+    };
+
+    return (
+        <React.Fragment>
+            <CssBaseline />
+            <Container maxWidth="lg">
+                <Box sx={{ my: 4 }}>
+                    <EventForm onEventCreated={handleEventCreated} />
+                    {/* <EventList events={events} /> */}
+                </Box>
+            </Container>
+        </React.Fragment>
+    );
+};
 
 export default App;
